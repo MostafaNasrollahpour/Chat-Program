@@ -18,8 +18,12 @@ public class Panel extends JPanel{
 
     public Panel(Border border){
         setLayout(new BorderLayout());
-        setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
         setBorder(border);
+    }
+
+    public void refresh(){
+        revalidate();
+        repaint();
     }
 
 }
