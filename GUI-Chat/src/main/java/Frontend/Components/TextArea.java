@@ -7,7 +7,7 @@ public class TextArea extends JTextArea {
 
     public TextArea(String message){
         super(message);
-        setFont(new Font("Arial", Font.PLAIN, 14)); // Set font size
+        setFont(new Font("Arial", Font.PLAIN, 20)); // Set font size
         setLineWrap(true);
         setWrapStyleWord(true);
         setEditable(false);
