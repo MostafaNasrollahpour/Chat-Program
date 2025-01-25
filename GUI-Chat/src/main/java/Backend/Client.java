@@ -45,7 +45,26 @@ public class Client {
         }
     }
 
-
+    public void sendMessage(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String message;
+                Scanner scanner = new Scanner(System.in);
+                while (true){
+                    message = scanner.nextLine();
+                    try {
+                        bufferedWriter.write(message);
+                        bufferedWriter.newLine();
+                        bufferedWriter.flush();
+                    } catch (IOException e) {
+                        closeEverything(socket, bufferedReader, bufferedWriter);
+                        break;
+                    }
+                }
+            }
+        }).start();
+    }
 
     public static void main(String[] args) throws IOException {
         System.out.print("Enter Your Name: ");
@@ -55,6 +74,6 @@ public class Client {
         Socket socket1 = new Socket("localhost", 5693);
 
         Client client = new Client(socket1, userName);
-
+        client.sendMessage();
     }
 }
