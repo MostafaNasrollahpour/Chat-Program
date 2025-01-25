@@ -8,7 +8,7 @@ public class Panel extends JPanel{
 
     public Panel(LayoutManager layoutManager){
         setPreferredSize(new Dimension(500, 100));
-        setBackground(new Color(200, 220, 255));
+        setBackground(new Color(9, 70, 158));
         setLayout(layoutManager);
     }
 

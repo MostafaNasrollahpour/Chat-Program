@@ -11,7 +11,6 @@ public class Frame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
-        this.getContentPane().setBackground(new Color(240, 240, 240));
     }
 
 }

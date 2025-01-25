@@ -60,11 +60,12 @@ public class ChatScreen {
 
         Scroll textScrollPane = new Scroll(messageArea);
 
-        messagePanel.setPreferredSize(new Dimension(400, 50));
+        messagePanel.setPreferredSize(new Dimension(400, 100));
         messagePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 
         // Add the JScrollPane to the message panel
         messagePanel.add(textScrollPane, BorderLayout.CENTER);
+        messagePanel.setBackground(new Color(9, 70, 158));
 
         // Add the message panel to the main panel
         mainPanel.add(messagePanel);

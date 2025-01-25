@@ -8,7 +8,7 @@ public class Scroll extends JScrollPane {
     public Scroll(JPanel panel){
         super(panel);
         setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        setBackground(new Color(20, 20, 200));
+        setBackground(new Color(9, 70, 158));
     }
 
     public Scroll(JTextArea textArea){

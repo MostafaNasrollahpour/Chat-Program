@@ -11,8 +11,10 @@ public class TextArea extends JTextArea {
         setLineWrap(true);
         setWrapStyleWord(true);
         setEditable(false);
-        setOpaque(false);
         setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        setBackground(new Color(9, 70, 158));
+        setOpaque(true);
+        setForeground(Color.WHITE);
     }
 
 }
