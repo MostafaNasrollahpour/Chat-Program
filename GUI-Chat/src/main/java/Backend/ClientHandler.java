@@ -62,9 +62,27 @@ public class ClientHandler extends Thread{
                     break;
                 }
                 System.out.println(userName + ": " + message);
+
+                sendMessage(userName + ": " + message);
+
             } catch (IOException e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
                 break;
+            }
+        }
+    }
+
+
+    public void sendMessage(String message){
+        for (var client: clients){
+            if(!client.userName.equals(this.userName)){
+                try{
+                    client.bufferedWriter.write(message);
+                    client.bufferedWriter.newLine();
+                    client.bufferedWriter.flush();
+                }catch (IOException e){
+                    closeEverything(socket, bufferedReader, bufferedWriter);
+                }
             }
         }
     }
