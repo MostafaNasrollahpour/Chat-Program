@@ -3,6 +3,7 @@ package Frontend;
 
 import Frontend.Components.Button;
 import Frontend.Components.Frame;
+import Frontend.Components.Label;
 import Frontend.Components.Panel;
 import Frontend.Components.TextArea;
 import Frontend.Components.TextField;
@@ -60,12 +61,10 @@ public class ChatScreen {
 
         Scroll textScrollPane = new Scroll(messageArea);
 
-        messagePanel.setPreferredSize(new Dimension(400, 100));
-        messagePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+        messagePanel.add(new Label("Me:"), BorderLayout.WEST);
 
         // Add the JScrollPane to the message panel
         messagePanel.add(textScrollPane, BorderLayout.CENTER);
-        messagePanel.setBackground(new Color(9, 70, 158));
 
         // Add the message panel to the main panel
         mainPanel.add(messagePanel);
