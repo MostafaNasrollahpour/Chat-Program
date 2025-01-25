@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class ClientHandler {
+public class ClientHandler extends Thread{
 
     public static ArrayList<ClientHandler> clients = new ArrayList<>();
 
@@ -23,6 +23,8 @@ public class ClientHandler {
             this.userName = bufferedReader.readLine();
             System.out.println(userName + " joined");
             clients.add(this);
+
+            this.start();
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
@@ -48,5 +50,24 @@ public class ClientHandler {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                String message = bufferedReader.readLine();
+                if (message == null) {
+                    System.out.println(userName + " has disconnected.");
+                    closeEverything(socket, bufferedReader, bufferedWriter);
+                    break;
+                }
+                System.out.println(userName + ": " + message);
+            } catch (IOException e) {
+                closeEverything(socket, bufferedReader, bufferedWriter);
+                break;
+            }
+        }
+    }
+
 
 }
