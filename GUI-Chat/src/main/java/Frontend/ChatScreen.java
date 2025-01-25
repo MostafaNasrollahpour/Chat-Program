@@ -12,6 +12,8 @@ import Frontend.Components.Scroll;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class ChatScreen {
     Frame frame;
@@ -43,7 +45,7 @@ public class ChatScreen {
         sendButton.addActionListener(e -> {
             String message = messageField.getText();
             if (!message.isEmpty()) {
-                sendMessage(message);
+                sendMessageToPanel(message, "Me:");
                 messageField.setText("");
             }
         });
@@ -54,14 +56,17 @@ public class ChatScreen {
         frame.add(typePanel, BorderLayout.SOUTH);
     }
 
-    private void sendMessage(String message) {
+    private void sendMessageToPanel(String message, String sender) {
         Panel messagePanel = new Panel(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
         TextArea messageArea = new TextArea(message);
 
         Scroll textScrollPane = new Scroll(messageArea);
 
-        messagePanel.add(new Label("Me:"), BorderLayout.WEST);
+        if (Objects.equals(sender, "Me:"))
+            messagePanel.add(new Label(sender), BorderLayout.WEST);
+        else
+            messagePanel.add(new Label(sender), BorderLayout.EAST);
 
         // Add the JScrollPane to the message panel
         messagePanel.add(textScrollPane, BorderLayout.CENTER);
@@ -76,7 +81,12 @@ public class ChatScreen {
         verticalScrollBar.setValue(verticalScrollBar.getMaximum());
     }
 
+    public void getMessage(){
+        sendMessageToPanel("Hello This is Test From Mostafa", "Mostafa");
+    }
+
     public static void main(String[] args) {
-        new ChatScreen();
+        var x = new ChatScreen();
+        x.getMessage();
     }
 }
