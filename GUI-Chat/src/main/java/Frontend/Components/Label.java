@@ -3,6 +3,7 @@ package Frontend.Components;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
+import java.util.Objects;
 
 public class Label extends JLabel {
 
@@ -12,7 +13,11 @@ public class Label extends JLabel {
         super(message);
         setFont(new Font("Arial", Font.PLAIN, 14));
         setOpaque(true);
-        setBackground(new Color(0, 231, 226));
+        if (Objects.equals(message, "Me:"))
+            setBackground(new Color(0, 231, 226));
+        else
+            setBackground(new Color(181, 9, 61));
+
         setForeground(Color.BLACK);
         setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
     }
