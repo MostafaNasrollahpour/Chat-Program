@@ -53,11 +53,31 @@ public class Client {
                 Scanner scanner = new Scanner(System.in);
                 while (true){
                     message = scanner.nextLine();
+                    if (message.trim().isEmpty()) {
+                        continue;
+                    }
                     try {
                         bufferedWriter.write(message);
                         bufferedWriter.newLine();
                         bufferedWriter.flush();
                     } catch (IOException e) {
+                        closeEverything(socket, bufferedReader, bufferedWriter);
+                        break;
+                    }
+                }
+            }
+        }).start();
+    }
+
+    public void getMessage(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    try {
+                        String message = bufferedReader.readLine();
+                        System.out.println(message);
+                    }catch (IOException e){
                         closeEverything(socket, bufferedReader, bufferedWriter);
                         break;
                     }
@@ -75,5 +95,6 @@ public class Client {
 
         Client client = new Client(socket1, userName);
         client.sendMessage();
+        client.getMessage();
     }
 }
