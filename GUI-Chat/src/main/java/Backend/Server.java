@@ -18,7 +18,6 @@ public class Server {
         try {
             while (true) {
                 Socket socket = serverSocket.accept();
-                System.out.println("A New Client Joined The Chat!");
                 new ClientHandler(socket);
             }
         } catch (IOException e) {

@@ -2,44 +2,40 @@ package Backend;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
+import java.util.Scanner;
 
-public class ClientHandler {
-
-    public static ArrayList<ClientHandler> clients = new ArrayList<>();
+public class Client {
 
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
     private String userName;
 
-    public ClientHandler(Socket socket) {
+
+
+    public Client(Socket socket, String userName) {
         try {
             this.socket = socket;
-
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            this.userName = userName;
 
-            this.userName = bufferedReader.readLine();
-            System.out.println(userName + " joined");
-            clients.add(this);
+
+            bufferedWriter.write(userName);
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
     }
 
-    public void removeClient() {
-        clients.remove(this);
-    }
-
     public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {
-        removeClient();
         try {
             if (bufferedReader != null) {
                 bufferedReader.close();
             }
             if (bufferedWriter != null) {
-                bufferedReader.close();
+                bufferedWriter.close();
             }
             if (socket != null) {
                 socket.close();
@@ -49,4 +45,16 @@ public class ClientHandler {
         }
     }
 
+
+
+    public static void main(String[] args) throws IOException {
+        System.out.print("Enter Your Name: ");
+        Scanner scanner = new Scanner(System.in);
+        String userName = scanner.nextLine();
+
+        Socket socket1 = new Socket("localhost", 5693);
+
+        Client client = new Client(socket1, userName);
+
+    }
 }
