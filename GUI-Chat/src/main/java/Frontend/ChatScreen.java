@@ -1,14 +1,16 @@
 package Frontend;
 
-import Frontend.Components.*;
+
 import Frontend.Components.Button;
 import Frontend.Components.Frame;
 import Frontend.Components.Panel;
+import Frontend.Components.TextArea;
 import Frontend.Components.TextField;
+import Frontend.Components.Scroll;
+
 
 import javax.swing.*;
 import java.awt.*;
-
 
 public class ChatScreen {
     Frame frame;
@@ -40,7 +42,7 @@ public class ChatScreen {
         sendButton.addActionListener(e -> {
             String message = messageField.getText();
             if (!message.isEmpty()) {
-                addMessageToScreen(message);
+                sendMessage(message);
                 messageField.setText("");
             }
         });
@@ -51,22 +53,23 @@ public class ChatScreen {
         frame.add(typePanel, BorderLayout.SOUTH);
     }
 
-    private void addMessageToScreen(String message) {
+    private void sendMessage(String message) {
         Panel messagePanel = new Panel(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
-        JLabel messageLabel = new JLabel(message);
-        messageLabel.setFont(new Font("Arial", Font.PLAIN, 14)); // Set font size
-        messageLabel.setOpaque(true);
-        messageLabel.setBackground(new Color(200, 220, 255)); // Light blue background
-        messageLabel.setForeground(Color.BLACK); // Text color
-        messageLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10)); // Add padding
+        TextArea messageArea = new TextArea(message);
 
-        messagePanel.add(messageLabel, BorderLayout.WEST);
+        Scroll textScrollPane = new Scroll(messageArea);
+
+        messagePanel.setPreferredSize(new Dimension(400, 50));
+        messagePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+
+        // Add the JScrollPane to the message panel
+        messagePanel.add(textScrollPane, BorderLayout.CENTER);
+
+        // Add the message panel to the main panel
         mainPanel.add(messagePanel);
 
-        // Refresh the panel to show the new message
-        mainPanel.revalidate();
-        mainPanel.repaint();
+        mainPanel.refresh();
 
         // Scroll to the bottom to show the latest message
         JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
