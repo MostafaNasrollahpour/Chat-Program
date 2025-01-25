@@ -1,6 +1,7 @@
 package Frontend;
 
 
+import Backend.Client;
 import Frontend.Components.Button;
 import Frontend.Components.Frame;
 import Frontend.Components.Label;
@@ -13,15 +14,19 @@ import Frontend.Components.Scroll;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class ChatScreen {
-    Frame frame;
-    Scroll scrollPane;
-    Panel mainPanel;
+    private final Frame frame;
+    private Scroll scrollPane;
+    private Panel mainPanel;
 
-    public ChatScreen() {
+    private final Client client;
+
+    public ChatScreen(String userName) {
+        client = new Client(userName);
+
         frame = new Frame();
+
         initScreenPanel();
         initTypePanel();
 
@@ -44,8 +49,9 @@ public class ChatScreen {
 
         sendButton.addActionListener(e -> {
             String message = messageField.getText();
-            if (!message.isEmpty()) {
+            if (!message.trim().isEmpty()) {
                 sendMessageToPanel(message, "Me:");
+                client.sendMessage(message);
                 messageField.setText("");
             }
         });
@@ -82,11 +88,16 @@ public class ChatScreen {
     }
 
     public void getMessage(){
-        sendMessageToPanel("Hello This is Test From Mostafa", "Mostafa");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                    String message = client.getMessage();
+                    String[] messageArray = message.split(":");
+                    sendMessageToPanel(messageArray[1].trim(), messageArray[0].trim());
+                }
+            }
+        }).start();
     }
 
-    public static void main(String[] args) {
-        var x = new ChatScreen();
-        x.getMessage();
-    }
 }
