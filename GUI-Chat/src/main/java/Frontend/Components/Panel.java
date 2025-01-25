@@ -19,6 +19,9 @@ public class Panel extends JPanel{
     public Panel(Border border){
         setLayout(new BorderLayout());
         setBorder(border);
+        setBackground(new Color(9, 70, 158));
+        setPreferredSize(new Dimension(400, 100));
+        setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
     }
 
     public void refresh(){
