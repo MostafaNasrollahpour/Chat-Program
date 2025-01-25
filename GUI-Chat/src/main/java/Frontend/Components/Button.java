@@ -11,6 +11,7 @@ public class Button extends JButton{
         setBackground(new Color(100, 150, 255));
         setForeground(Color.WHITE);
         setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        setFocusable(false);
     }
 
 }
