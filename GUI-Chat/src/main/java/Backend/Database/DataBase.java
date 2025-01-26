@@ -130,7 +130,7 @@ public class DataBase {
             while (resultSet.next()) {
                 String name = resultSet.getString("userName");
                 String pass = resultSet.getString("password");
-                System.out.println(name + " " + pass);
+                System.out.println("Name: " + name + ", Password: " + pass);
             }
         } catch (SQLException e) {
             closeDataBase();
