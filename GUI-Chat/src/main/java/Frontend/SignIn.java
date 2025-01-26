@@ -37,13 +37,16 @@ public class SignIn {
         DataBase dataBase = new DataBase();
 
         button.addActionListener(actionEvent -> {
-            var result = dataBase.signIn(userName.getText(), new String(password.getPassword()));
-            if (!result.equals("OK")){
-                new Dialog(frame, result);
+            var name = userName.getText().toLowerCase();
+            var pass = new String(password.getPassword());
+
+            if(name.isEmpty() || pass.isEmpty()){
+                new Dialog(frame, "fill all fields");
                 return;
             }
-            if(userName.getText().isEmpty() || password.getPassword().length == 0){
-                new Dialog(frame, "fill all fields");
+            var result = dataBase.signIn(name, pass);
+            if (!result.equals("OK")){
+                new Dialog(frame, result);
                 return;
             }
             new ChatScreen(userName.getText(), frame);
