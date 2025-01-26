@@ -1,7 +1,9 @@
-package Backend;
+package Backend.Database;
 
 
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Objects;
 
 
 public class DataBase {
@@ -31,75 +33,41 @@ public class DataBase {
         }
     }
 
-    public void insertData(String name, String email){
+    public void signIn(String userName, String password){
 
-        try {
-            // Insert data
-            String sql = "INSERT INTO users (name, email) VALUES (?, ?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, email);
-            preparedStatement.executeUpdate();
-
-            System.out.println("Data inserted successfully");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            closeDataBase();
+        var result = checkExist(userName);
+        var key = result.keySet().iterator().next();
+        var detail = result.get(key);
+        if (key){
+            System.out.println(key);
+        }else{
+            System.out.println(detail);
         }
     }
 
-    public void selectData(){
+
+    private HashMap<Boolean, String> checkExist(String userName){
+        HashMap<Boolean, String> result = new HashMap<>();
         try {
 
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM users");
+            ResultSet resultSet = statement.executeQuery("SELECT userName FROM users");
 
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                String email = resultSet.getString("email");
-                System.out.println("ID: " + id + ", Name: " + name + ", Email: " + email);
+                String name = resultSet.getString("userName");
+                if(Objects.equals(name, userName)){
+                    result.put(false, "User Name Already Exist");
+                    return result;
+                }
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
             closeDataBase();
+            result.put(false, "Unexpected");
+            return result;
         }
-    }
-
-    public void updateData(String email, int id){
-        try {
-
-            // Update data
-            String sql = "UPDATE users SET email = ? WHERE id = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, email);
-            preparedStatement.setInt(2, id);
-            preparedStatement.executeUpdate();
-
-            System.out.println("Data updated successfully");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            closeDataBase();
-        }
-    }
-
-    public void deleteData(int id){
-        try {
-            // Delete data
-            String sql = "DELETE FROM users WHERE id = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-
-            System.out.println("Data deleted successfully");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            closeDataBase();
-        }
+        result.put(true, "OK");
+        return result;
     }
 
     public void closeDataBase(){
