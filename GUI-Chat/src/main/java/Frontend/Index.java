@@ -19,7 +19,8 @@ public class Index {
         Button signInButton = new Button("Sign in");
 
         logInButton.addActionListener(actionEvent -> {
-            System.out.println("login");
+            new Login(frame);
+            frame.dispose();
         });
 
         signInButton.addActionListener(actionEvent -> {
