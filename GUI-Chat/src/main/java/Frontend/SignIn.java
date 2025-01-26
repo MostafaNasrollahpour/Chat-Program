@@ -1,13 +1,13 @@
 package Frontend;
 
+import Backend.Database.DataBase;
 import Frontend.Components.Button;
 import Frontend.Components.Frame;
-import Frontend.Components.Label;
 import Frontend.Components.Panel;
 import Frontend.Components.PassField;
 import Frontend.Components.TextField;
 
-import javax.swing.*;
+
 import java.awt.*;
 
 public class SignIn {
@@ -31,6 +31,18 @@ public class SignIn {
 
         Button button = new Button("Continue");
         panel.add(button);
+
+        DataBase dataBase = new DataBase();
+
+        button.addActionListener(actionEvent -> {
+            var result = dataBase.signIn(userName.getText(), new String(password.getPassword()));
+            if (!result.equals("OK")){
+                System.out.println(result);
+                return;
+            }
+            new ChatScreen(userName.getText(), frame);
+            frame.dispose();
+        });
 
 
         this.frame.add(panel, BorderLayout.NORTH);
