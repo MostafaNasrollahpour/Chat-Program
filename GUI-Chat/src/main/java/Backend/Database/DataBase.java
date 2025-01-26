@@ -2,7 +2,6 @@ package Backend.Database;
 
 
 import java.sql.*;
-import java.util.HashMap;
 import java.util.Objects;
 
 
@@ -33,41 +32,36 @@ public class DataBase {
         }
     }
 
-    public void signIn(String userName, String password){
+    public String signIn(String userName, String password){
+
 
         var result = checkExist(userName);
-        var key = result.keySet().iterator().next();
-        var detail = result.get(key);
-        if (key){
-            System.out.println(key);
-        }else{
-            System.out.println(detail);
+        if(!result.equals("OK")){
+            return result;
         }
+
+
+
+        return result;
     }
 
 
-    private HashMap<Boolean, String> checkExist(String userName){
-        HashMap<Boolean, String> result = new HashMap<>();
+    private String checkExist(String userName){
         try {
-
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT userName FROM users");
-
             while (resultSet.next()) {
                 String name = resultSet.getString("userName");
-                if(Objects.equals(name, userName)){
-                    result.put(false, "User Name Already Exist");
-                    return result;
+                if(Objects.equals(name, userName)) {
+                    return "User Name Already Exist";
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
             closeDataBase();
-            result.put(false, "Unexpected");
-            return result;
+            return "Unexpected";
         }
-        result.put(true, "OK");
-        return result;
+        return "OK";
     }
 
     public void closeDataBase(){
