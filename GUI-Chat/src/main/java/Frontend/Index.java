@@ -23,7 +23,8 @@ public class Index {
         });
 
         signInButton.addActionListener(actionEvent -> {
-            System.out.println("sign in");
+            new SignIn(frame);
+            frame.dispose();
         });
 
         panel.add(logInButton);
