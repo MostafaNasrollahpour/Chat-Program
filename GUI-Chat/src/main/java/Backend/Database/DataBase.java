@@ -121,21 +121,26 @@ public class DataBase {
         }
     }
 
-    // this is for debugging
-    private void showTable(){
+
+    // this part of code is for seeing table
+    public void showTable(){
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM users");
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
                 String name = resultSet.getString("userName");
                 String pass = resultSet.getString("password");
-                System.out.println(id + " " + name + " " + pass);
+                System.out.println(name + " " + pass);
             }
         } catch (SQLException e) {
             closeDataBase();
         }
 
+    }
+
+    // run for see table
+    public static void main(String[] args) {
+        new DataBase().showTable();
     }
 
 }
