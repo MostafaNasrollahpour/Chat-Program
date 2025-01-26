@@ -44,7 +44,7 @@ public class ChatScreen {
     private void initTypePanel() {
 
         Panel typePanel = new Panel(new BorderLayout());
-        TextField messageField = new TextField();
+        TextField messageField = new TextField("write your message...");
         Button sendButton = new Button("Send");
 
         sendButton.addActionListener(e -> {
