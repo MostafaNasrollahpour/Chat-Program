@@ -2,6 +2,7 @@ package Frontend;
 
 import Backend.Database.DataBase;
 import Frontend.Components.Button;
+import Frontend.Components.Dialog;
 import Frontend.Components.Frame;
 import Frontend.Components.Panel;
 import Frontend.Components.PassField;
@@ -37,7 +38,11 @@ public class SignIn {
         button.addActionListener(actionEvent -> {
             var result = dataBase.signIn(userName.getText(), new String(password.getPassword()));
             if (!result.equals("OK")){
-                System.out.println(result);
+                new Dialog(frame, result);
+                return;
+            }
+            if(userName.getText().isEmpty() || password.getPassword().length == 0){
+                new Dialog(frame, "fill all fields");
                 return;
             }
             new ChatScreen(userName.getText(), frame);
