@@ -7,8 +7,6 @@ import java.util.Objects;
 
 public class Label extends JLabel {
 
-    private int cornerRadius = 20;
-
     public Label(String message){
         super(message);
         setFont(new Font("Arial", Font.PLAIN, 14));
@@ -22,6 +20,9 @@ public class Label extends JLabel {
         setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
     }
 
+    public Label(String message, int horizontalAlignment){
+        super(message, horizontalAlignment);
+    }
 
 
     @Override
@@ -29,10 +30,11 @@ public class Label extends JLabel {
         // Create a Graphics2D object for better rendering
         Graphics2D g2d = (Graphics2D) g.create();
 
-        // Enable anti-aliasing for smoother edges
+
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         // Create a rounded rectangle shape
+        int cornerRadius = 20;
         RoundRectangle2D roundedRectangle = new RoundRectangle2D.Float(
                 0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius
         );
