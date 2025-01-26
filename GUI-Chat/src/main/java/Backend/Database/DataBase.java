@@ -26,7 +26,6 @@ public class DataBase {
             System.out.println("Table created successfully");
 
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
             closeDataBase();
         }
     }
@@ -43,6 +42,15 @@ public class DataBase {
         return result;
     }
 
+    public String logIn(String userName, String password){
+        String result = checkExist(userName);
+        if(!result.equals("User Name Already Exist")){
+            return "User Name Doesn't Exist";
+        }
+        result = passMatch(userName, password);
+        return result;
+    }
+
 
     private String checkExist(String userName){
         try {
@@ -55,7 +63,6 @@ public class DataBase {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             closeDataBase();
             return "Unexpected";
         }
@@ -73,7 +80,32 @@ public class DataBase {
 
             return "OK";
         } catch (SQLException e) {
-            e.printStackTrace();
+            closeDataBase();
+            return "Unexpected";
+        }
+    }
+
+    private String passMatch(String userName, String pass) {
+        try {
+            String sql = "SELECT password FROM users WHERE userName = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userName);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                String storedPassword = resultSet.getString("password");
+
+                if (Objects.equals(storedPassword, pass)) {
+                    return "OK"; // Passwords match
+                } else {
+                    return "Password Not Match"; // Passwords do not match
+                }
+            } else {
+                return "User Not Found";
+            }
+
+        } catch (SQLException e) {
             closeDataBase();
             return "Unexpected";
         }
@@ -84,13 +116,13 @@ public class DataBase {
             if (connection != null) {
                 connection.close();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ignored) {
+
         }
     }
 
     // this is for debugging
-    public void showTable(){
+    private void showTable(){
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM users");
@@ -101,9 +133,7 @@ public class DataBase {
                 System.out.println(id + " " + name + " " + pass);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             closeDataBase();
-
         }
 
     }
