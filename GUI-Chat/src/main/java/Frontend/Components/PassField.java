@@ -43,7 +43,7 @@ public class PassField extends JPasswordField {
         } else {
             // Show the password
             setEchoChar((char) 0);
-            toggleButton.setText("Hide");
+            toggleButton.setText("Hide ");
         }
         passwordVisible = !passwordVisible;
     }

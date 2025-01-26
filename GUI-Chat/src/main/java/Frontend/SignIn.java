@@ -31,7 +31,7 @@ public class SignIn {
         password.setPreferredSize(new Dimension(this.frame.getWidth() - 80, 100));
         panel.add(password);
 
-        Button button = new Button("Continue");
+        Button button = new Button("Sign in");
         panel.add(button);
 
         DataBase dataBase = new DataBase();
