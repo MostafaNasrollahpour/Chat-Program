@@ -13,4 +13,11 @@ public class Frame extends JFrame {
         this.setLayout(new BorderLayout());
     }
 
+    public Frame(String title, Frame frame){
+        super(title);
+        this.setSize(frame.getWidth(), frame.getHeight());
+        this.setLocation(frame.getLocation());
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
 }
