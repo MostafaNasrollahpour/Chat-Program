@@ -22,10 +22,10 @@ public class ChatScreen {
 
     private final Client client;
 
-    public ChatScreen(String userName) {
+    public ChatScreen(String userName, Frame f) {
         client = new Client(userName);
 
-        frame = new Frame("Chat-Screen");
+        frame = new Frame("Chat-Screen", f);
 
         initScreenPanel();
         initTypePanel();
