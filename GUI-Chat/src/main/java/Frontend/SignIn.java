@@ -17,6 +17,7 @@ public class SignIn {
 
     public SignIn(Frame f){
         this.frame = new Frame("Sign-in", f);
+        frame.getContentPane().setBackground(new Color(100, 196, 255));
 
         Panel panel = new Panel();
         panel.setPreferredSize(new Dimension(400, 300));
