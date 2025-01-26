@@ -10,8 +10,12 @@ public class Server {
 
     private final ServerSocket serverSocket;
 
-    public Server(ServerSocket serverSocket) {
-        this.serverSocket = serverSocket;
+    public Server() {
+        try {
+            this.serverSocket = new ServerSocket(5693);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void startServer() {
@@ -35,12 +39,4 @@ public class Server {
         }
     }
 
-
-    public static void main(String[] args) throws IOException {
-
-        ServerSocket serverSocket1 = new ServerSocket(5693);
-        Server server = new Server(serverSocket1);
-
-        server.startServer();
-    }
 }
