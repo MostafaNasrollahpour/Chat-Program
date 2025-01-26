@@ -25,7 +25,7 @@ public class ChatScreen {
     public ChatScreen(String userName) {
         client = new Client(userName);
 
-        frame = new Frame();
+        frame = new Frame("Chat-Screen");
 
         initScreenPanel();
         initTypePanel();

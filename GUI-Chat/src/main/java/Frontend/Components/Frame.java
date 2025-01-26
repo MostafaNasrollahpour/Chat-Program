@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class Frame extends JFrame {
 
-    public Frame(){
-        this.setTitle("Chat-Screen");
+    public Frame(String title){
+        super(title);
         this.setSize(500, 800);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
