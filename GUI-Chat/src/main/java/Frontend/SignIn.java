@@ -49,7 +49,8 @@ public class SignIn {
                 new Dialog(frame, result);
                 return;
             }
-            new ChatScreen(userName.getText(), frame);
+            var chat = new ChatScreen(userName.getText(), frame);
+            chat.getMessage();
             frame.dispose();
         });
 

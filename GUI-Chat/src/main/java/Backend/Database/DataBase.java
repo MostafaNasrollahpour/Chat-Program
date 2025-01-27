@@ -23,8 +23,6 @@ public class DataBase {
 
             statement.executeUpdate(sql);
 
-            System.out.println("Table created successfully");
-
         } catch (ClassNotFoundException | SQLException e) {
             closeDataBase();
         }
