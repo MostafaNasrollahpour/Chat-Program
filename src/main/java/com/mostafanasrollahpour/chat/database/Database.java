@@ -1,14 +1,14 @@
-package Backend.Database;
+package com.mostafanasrollahpour.chat.database;
 
 
 import java.sql.*;
 import java.util.Objects;
 
 
-public class DataBase {
+public class Database {
     Connection connection = null;
 
-    public DataBase(){
+    public Database(){
 
         try {
             Class.forName("org.sqlite.JDBC");
@@ -138,7 +138,7 @@ public class DataBase {
 
     // run for see table
     public static void main(String[] args) {
-        new DataBase().showTable();
+        new Database().showTable();
     }
 
 }

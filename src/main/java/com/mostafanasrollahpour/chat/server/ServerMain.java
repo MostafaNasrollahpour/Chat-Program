@@ -1,10 +1,10 @@
-package Backend;
+package com.mostafanasrollahpour.chat.server;
 
 
 import java.io.IOException;
 
 
-public class BackendMain {
+public class ServerMain {
 
     public static void main(String[] args) throws IOException {
         Server server = new Server();

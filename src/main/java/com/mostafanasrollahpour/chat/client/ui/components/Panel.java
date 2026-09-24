@@ -1,4 +1,4 @@
-package Frontend.Components;
+package com.mostafanasrollahpour.chat.client.ui.components;
 
 import javax.swing.*;
 import javax.swing.border.Border;

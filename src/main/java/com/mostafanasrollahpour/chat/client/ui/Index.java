@@ -1,8 +1,8 @@
-package Frontend;
+package com.mostafanasrollahpour.chat.client.ui;
 
-import Frontend.Components.Button;
-import Frontend.Components.Frame;
-import Frontend.Components.Panel;
+import com.mostafanasrollahpour.chat.client.ui.components.Button;
+import com.mostafanasrollahpour.chat.client.ui.components.Frame;
+import com.mostafanasrollahpour.chat.client.ui.components.Panel;
 
 import java.awt.*;
 
@@ -16,7 +16,7 @@ public class Index {
         panel.setBackground(new Color(100, 100, 255));
 
         Button logInButton = new Button("Login");
-        Button signInButton = new Button("Sign in");
+        Button signInButton = new Button("Register");
 
         logInButton.addActionListener(actionEvent -> {
             new Login(frame);
@@ -24,7 +24,7 @@ public class Index {
         });
 
         signInButton.addActionListener(actionEvent -> {
-            new SignIn(frame);
+            new Register(frame);
             frame.dispose();
         });
 

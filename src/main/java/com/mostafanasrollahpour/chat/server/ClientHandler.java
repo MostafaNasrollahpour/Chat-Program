@@ -1,4 +1,4 @@
-package Backend;
+package com.mostafanasrollahpour.chat.server;
 
 import java.io.*;
 import java.net.Socket;

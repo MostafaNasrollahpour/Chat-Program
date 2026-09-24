@@ -1,14 +1,14 @@
-package Frontend;
+package com.mostafanasrollahpour.chat.client.ui;
 
 
-import Backend.Client;
-import Frontend.Components.Button;
-import Frontend.Components.Frame;
-import Frontend.Components.Label;
-import Frontend.Components.Panel;
-import Frontend.Components.TextArea;
-import Frontend.Components.TextField;
-import Frontend.Components.Scroll;
+import com.mostafanasrollahpour.chat.client.Client;
+import com.mostafanasrollahpour.chat.client.ui.components.Button;
+import com.mostafanasrollahpour.chat.client.ui.components.Frame;
+import com.mostafanasrollahpour.chat.client.ui.components.Label;
+import com.mostafanasrollahpour.chat.client.ui.components.Panel;
+import com.mostafanasrollahpour.chat.client.ui.components.TextArea;
+import com.mostafanasrollahpour.chat.client.ui.components.TextField;
+import com.mostafanasrollahpour.chat.client.ui.components.Scroll;
 
 
 import javax.swing.*;

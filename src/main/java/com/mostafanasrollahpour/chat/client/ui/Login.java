@@ -1,12 +1,12 @@
-package Frontend;
+package com.mostafanasrollahpour.chat.client.ui;
 
-import Backend.Database.DataBase;
-import Frontend.Components.Button;
-import Frontend.Components.Dialog;
-import Frontend.Components.Frame;
-import Frontend.Components.Panel;
-import Frontend.Components.PassField;
-import Frontend.Components.TextField;
+import com.mostafanasrollahpour.chat.database.Database;
+import com.mostafanasrollahpour.chat.client.ui.components.Button;
+import com.mostafanasrollahpour.chat.client.ui.components.Dialog;
+import com.mostafanasrollahpour.chat.client.ui.components.Frame;
+import com.mostafanasrollahpour.chat.client.ui.components.Panel;
+import com.mostafanasrollahpour.chat.client.ui.components.PassField;
+import com.mostafanasrollahpour.chat.client.ui.components.TextField;
 
 
 import java.awt.*;
@@ -34,7 +34,7 @@ public class Login {
         Button button = new Button("Login");
         panel.add(button);
 
-        DataBase dataBase = new DataBase();
+        Database dataBase = new Database();
 
         button.addActionListener(actionEvent -> {
             var name = userName.getText().toLowerCase();

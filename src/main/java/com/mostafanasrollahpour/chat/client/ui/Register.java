@@ -1,22 +1,22 @@
-package Frontend;
+package com.mostafanasrollahpour.chat.client.ui;
 
-import Backend.Database.DataBase;
-import Frontend.Components.Button;
-import Frontend.Components.Dialog;
-import Frontend.Components.Frame;
-import Frontend.Components.Panel;
-import Frontend.Components.PassField;
-import Frontend.Components.TextField;
+import com.mostafanasrollahpour.chat.database.Database;
+import com.mostafanasrollahpour.chat.client.ui.components.Button;
+import com.mostafanasrollahpour.chat.client.ui.components.Dialog;
+import com.mostafanasrollahpour.chat.client.ui.components.Frame;
+import com.mostafanasrollahpour.chat.client.ui.components.Panel;
+import com.mostafanasrollahpour.chat.client.ui.components.PassField;
+import com.mostafanasrollahpour.chat.client.ui.components.TextField;
 
 
 import java.awt.*;
 
-public class SignIn {
+public class Register {
 
     Frame frame;
 
-    public SignIn(Frame f){
-        this.frame = new Frame("Sign-in", f);
+    public Register(Frame f){
+        this.frame = new Frame("Register", f);
         frame.getContentPane().setBackground(new Color(100, 196, 255));
 
         Panel panel = new Panel();
@@ -31,10 +31,10 @@ public class SignIn {
         password.setPreferredSize(new Dimension(this.frame.getWidth() - 80, 100));
         panel.add(password);
 
-        Button button = new Button("Sign in");
+        Button button = new Button("Register");
         panel.add(button);
 
-        DataBase dataBase = new DataBase();
+        Database dataBase = new Database();
 
         button.addActionListener(actionEvent -> {
             var name = userName.getText().toLowerCase();
